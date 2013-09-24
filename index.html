@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<title>Franci &amp; Luca</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Matrimonio, Franci & Luca" />
+<meta name="keywords" content="Matrimonio, Franci & Luca" />
+
+<!-- Styles -->
+<link href="resources/css/reset.css" rel="stylesheet" >
+<link href="resources/fonts/leaguegothic/stylesheet.css" rel="stylesheet" >
+<link href="resources/fonts/learningcurvepro/stylesheet.css" rel="stylesheet" >
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="resources/css/countdown.css" rel="stylesheet" media="screen">
+<link href="resources/css/app.css" rel="stylesheet" media="screen">
+
+<!-- Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="resources/js/jquery.countdown.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+  $('div#clock').countdown("2014/07/19 16:00:00", function(event) {
+    var $this = $(this);
+    switch(event.type) {
+      case "seconds":
+      case "minutes":
+      case "hours":
+      case "days":
+      case "weeks":
+      case "daysLeft":
+        $this.find('span#'+event.type).html(event.value);
+        break;
+      case "finished":
+        $this.hide();
+        break;
+    }
+  });
+});
+</script>
+  
+<!-- AllTheFavIcons.com standard favicon_64.png -->
+<link rel="icon" type="image/png" href="resources/favicon/favicon_64.png" />
+<!-- AllTheFavIcons.com favicon_57.png for iPhone -->
+<link rel="apple-touch-icon" type="image/png" href="resources/favicon/favicon_57.png" />
+<!-- AllTheFavIcons.com favicon_114.png for Retina iPhone -->
+<link rel="apple-touch-icon" type="image/png" href="resources/favicon/favicon_114.png" sizes="114x114" />
+<!-- AllTheFavIcons.com favicon_72.png for iPad -->
+<link rel="apple-touch-icon" type="image/png" href="resources/favicon/favicon_72.png" sizes="72x72" />
+<!-- AllTheFavIcons.com favicon_144.png for Retina iPad -->
+<link rel="apple-touch-icon" type="image/png" href="resources/favicon/favicon_144.png" sizes="144x144" />
+<!-- AllTheFavIcons.com multi resolution favicon.ico for IE -->
+<link rel="shortcut icon" href="resources/favicon/favicon_multi.ico">
+
+</head>
+<body>
+  <img src="resources/img/japanese-landscape.jpg" class="img-responsive" alt="Sposi">
+  
+  <div class="container">
+    <div class="row margin-top-15">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
+        <div class="separator text-center">
+          <span class="italic">sabato, ore 16:00</span>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="separator text-center">
+          <span class="italic"><strong>19 luglio 2014</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="row margin-top-15" id="clock">
+      <div class="col-xs-3 col-sm-3 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2 padding-item-1">
+        <div class="thumbnail">
+          <span id="days" class="clockvalue"></span><br/><span class="clocklabel">Giorni</span>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-2">
+        <div class="thumbnail">
+          <span id="hours" class="clockvalue"></span><br/><span class="clocklabel">Ore</span>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-3">
+        <div class="thumbnail">
+          <span id="minutes" class="clockvalue"></span><br/><span class="clocklabel">Minuti</span>
+        </div>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-4">
+        <div class="thumbnail">
+          <span id="seconds" class="clockvalue"></span><br/><span class="clocklabel">Secondi</span>
+        </div>
+      </div>
+    </div>
+    <div class="row margin-top-60">
+      <div class="col-xs-12 col-sm-4 col-lg-4">
+        <div class="thumbnail margin-top-15">
+          <img class="img-rounded img-fixedheight" src="http://rete.comuni-italiani.it/foto/2008/wp-content/uploads/2009/02/99456-800x570-500x356.jpg" alt="Chiesa">
+          <div class="caption">
+            <h3>Chiesa</h3>
+            <address>
+              <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br>
+              <abbr title="Telefono">Tel:</abbr> (123) 456-7890
+            </address>
+            <!--
+            <p>
+              <a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn btn-default">Action</a>
+            </p>
+            -->
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 col-lg-4">
+        <div class="thumbnail margin-top-15">
+          <img class="img-rounded img-fixedheight" src="http://www.lineaimmobiliare.it/wp-content/uploads/2013/04/ristorante3.jpg" alt="Ristorante">
+          <div class="caption">
+            <h3>Ristorante</h3>
+            <address>
+              <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br>
+              <abbr title="Telefono">Tel:</abbr> (123) 456-7890
+            </address>
+            <!--
+            <p>
+              <a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn btn-default">Action</a>
+            </p>
+            -->
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 col-lg-4">
+        <div class="thumbnail margin-top-15">
+          <a href="#" class="img-fixedheight" style="display: block;">
+          <img class="img-rounded img-fixedheight" src="http://www.oggisposa.it/images/foto%20bomboniere/bomboniere5.jpg" alt="Ristorante">
+          </a>
+          <div class="caption">
+            <h3>Lista Nozze</h3>
+            <address>
+              <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br>
+              <abbr title="Telefono">Tel:</abbr> (123) 456-7890
+            </address>
+            <!--
+            <p>
+              <a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn btn-default">Action</a>
+            </p>
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row margin-top-60">
+      <div class="col-12">
+        <div class="separator" style="text-align: center;">
+          <span class="italic">Ed ora... un po' di fotografie</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" style="text-align: center;">
+        <div class="thumbnail" style="padding-top: 10px;">
+<!-- www.intagme.com -->
+<iframe src="http://www.intagme.com/in/?u=ZnJhbmN5YmVsbGl8c2x8MjkwfDJ8M3x8bm98NXx1bmRlZmluZWQ=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:295px; height: 295px" ></iframe>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+<br/>
+<br/>
+  <footer class="bs-footer">
+  </footer>
+</body>
+</html>
