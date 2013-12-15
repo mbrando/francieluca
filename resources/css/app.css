@@ -27,7 +27,19 @@ img.img-fixedheight {
 	font-size: 56px;
 }
 
-text-center {
-	text-align: center;
+ul.colored {
+    list-style: none;
+    padding:0;
+    margin:0;
 }
 
+ul.colored li { 
+    padding-left: 0.5em; 
+    text-indent: -.5em;
+}
+
+ul.colored li:before {
+    content: "\002022  ";
+    font-size: 2em;
+    color: fuchsia; /* or whatever color you prefer */
+}
