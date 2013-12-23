@@ -4,7 +4,7 @@ body {
 }
 
 body.class1 {
-	background-image: url("../img/lovers-2.png");
+	background-image: url("../img/background-nice.jpg");
 }
 
 body.class2 {
@@ -17,6 +17,14 @@ body.class3 {
 
 body.class4 {
 	background-image: url("../img/background-pink.jpg");
+}
+
+body.class5 {
+	background-image: url("../img/lovers-2.png");
+}
+
+body.class6 {
+	background-image: url("../img/background-franci.jpg");
 }
 
 img.img-fixedheight {
