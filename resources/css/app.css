@@ -1,7 +1,22 @@
 body {
 	margin-top: 0;
 	margin-bottom: 15px;
-	background-image: url("../img/background.jpg");
+}
+
+body.class1 {
+	background-image: url("../img/lovers-2.png");
+}
+
+body.class2 {
+	background-image: url("../img/lovers.png");
+}
+
+body.class3 {
+	background-color: #FF99FF;
+}
+
+body.class4 {
+	background-image: url("../img/background-pink.jpg");
 }
 
 img.img-fixedheight {
