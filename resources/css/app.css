@@ -4,27 +4,27 @@ body {
 }
 
 body.class1 {
-	background-image: url("../img/background-nice.jpg");
+	background-image: url("../img/background-1.jpg");
 }
 
 body.class2 {
-	background-image: url("../img/lovers.png");
+	background-image: url("../img/background-2.jpg");
 }
 
 body.class3 {
-	background-color: #FF99FF;
+	background-image: url("../img/background-3.jpg");
 }
 
 body.class4 {
-	background-image: url("../img/background-pink.jpg");
+	background-image: url("../img/background-4.jpg");
 }
 
 body.class5 {
-	background-image: url("../img/lovers-2.png");
+	background-color: #FF99FF;
 }
 
 body.class6 {
-	background-image: url("../img/background-franci.jpg");
+	background-image: url("../img/background-nice.jpg");
 }
 
 img.img-fixedheight {
