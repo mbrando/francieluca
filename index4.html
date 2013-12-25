@@ -16,7 +16,9 @@
 <link href="resources/css/app.css" rel="stylesheet" media="screen">
 
 <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script src="resources/js/galleria/galleria-1.3.3.min.js"></script>
+<script src="resources/js/galleria/plugins/facebook/galleria.facebook.min.js"></script>
 <script src="resources/js/jquery.countdown.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 $(function(){
@@ -37,6 +39,13 @@ $(function(){
     }
   });
 });
+Galleria.loadTheme('resources/js/galleria/themes/classic/galleria.classic.min.js');
+Galleria.run('#galleria', {
+ facebook: 'album:215064918659739',
+ width: 745,
+ height: 550,
+ overlayBackground: 'purple',
+ lightbox: false});
 </script>
   
 <!-- AllTheFavIcons.com standard favicon_64.png -->
@@ -54,52 +63,61 @@ $(function(){
 
 </head>
 <body class="class4">
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/it_IT/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+        <div class="opaque thumbnail margin-top-15">
         <img src="resources/img/franci_homepage.jpg" class="img-responsive" alt="Sposi">
+        </div>
       </div>
     </div>
-    <div class="row margin-top-15">
-      <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
-        <div class="separator text-center">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 margin-top-15">
+        <div class="separator text-center opaque thumbnail">
           <span class="italic">sabato, ore 16:00</span>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="separator text-center">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 margin-top-15">
+        <div class="separator text-center opaque thumbnail">
           <span class="italic"><strong>19 luglio 2014</strong></span>
         </div>
       </div>
     </div>
     <div class="row margin-top-15" id="clock">
       <div class="col-xs-3 col-sm-3 col-md-2 col-md-offset-2 col-lg-2 col-lg-offset-2 padding-item-1">
-        <div class="thumbnail">
+        <div class="opaque thumbnail">
           <span id="days" class="clockvalue"></span><br/><span class="clocklabel">Giorni</span>
         </div>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-2">
-        <div class="thumbnail">
+        <div class="opaque thumbnail">
           <span id="hours" class="clockvalue"></span><br/><span class="clocklabel">Ore</span>
         </div>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-3">
-        <div class="thumbnail">
+        <div class="opaque thumbnail">
           <span id="minutes" class="clockvalue"></span><br/><span class="clocklabel">Minuti</span>
         </div>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 padding-item-4">
-        <div class="thumbnail">
+        <div class="opaque thumbnail">
           <span id="seconds" class="clockvalue"></span><br/><span class="clocklabel">Secondi</span>
         </div>
       </div>
     </div>
     <div class="row margin-top-60">
       <div class="col-xs-12 col-sm-4 col-lg-4">
-        <div class="thumbnail margin-top-15">
-          <!-- 
-          <img class="img-rounded img-fixedheight" src="http://www.comearrivarea.com/wp-content/uploads/2012/07/14.jpg" alt="Chiesa">
-           -->
+        <div class="opaque thumbnail margin-top-15">
           <img class="img-rounded img-fixedheight" src="resources/img/chiesa.jpg" alt="Chiesa">
           <div class="caption">
             <h3>Chiesa</h3>
@@ -128,12 +146,8 @@ $(function(){
         </div>
       </div>
       <div class="col-12 col-sm-4 col-lg-4">
-        <div class="thumbnail margin-top-15">
-        <!-- 
-          <div class="text-center"><h3>Ristorante</h3></div>
-          <img class="img-rounded img-fixedheight" src="http://www.lineaimmobiliare.it/wp-content/uploads/2013/04/ristorante3.jpg" alt="Ristorante">
-         -->
-          <img class="img-rounded img-fixedheight" src="resources/img/ristorante.jpg" alt="Ristorante">
+        <div class="opaque thumbnail margin-top-15">
+          <img class="no-opaque img-rounded img-fixedheight" src="resources/img/ristorante.jpg" alt="Ristorante">
           <div class="caption">
             <h3>Ristorante</h3>
             <address>
@@ -160,13 +174,8 @@ $(function(){
         </div>
       </div>
       <div class="col-12 col-sm-4 col-lg-4">
-        <div class="thumbnail margin-top-15">
-          <!-- 
-          <a href="#" class="img-fixedheight" style="display: block;">
-          <img class="img-rounded img-fixedheight" src="http://www.oggisposa.it/images/foto%20bomboniere/bomboniere5.jpg" alt="Regalo">
-          </a>
-           -->
-          <img class="img-rounded img-fixedheight" src="resources/img/work-in-progress.jpg" alt="Regalo">
+        <div class="opaque thumbnail margin-top-15">
+          <img class="no-opaque img-rounded img-fixedheight" src="resources/img/work-in-progress.jpg" alt="Regalo">
           <div class="caption">
             <h3>Il Tuo regalo agli Sposi</h3>
           </div>
@@ -174,25 +183,48 @@ $(function(){
       </div>
     </div>
     <div class="row margin-top-60">
-      <div class="col-12">
-        <div class="separator" style="text-align: center;">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="separator text-center opaque thumbnail">
           <span class="italic">Ed ora... un po' di fotografie</span>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" style="text-align: center;">
-        <div class="thumbnail" style="padding-top: 10px;">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="text-align: center;">
+        <div class="opaque thumbnail margin-top-15" style="padding-top: 40px;">
 <!-- www.intagme.com -->
-<iframe src="http://www.intagme.com/in/?h=d2RheTE5bHVnbGlvMjAxNHxzbHwzMDB8MnwzfHx5ZXN8NXx1bmRlZmluZWQ=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:315px; height: 315px" ></iframe>
-        </div>
-        <div class="caption">
-           <h3>Instagram #wday19luglio2014</h3>
+<iframe src="http://www.intagme.com/in/?h=d2RheTE5bHVnbGlvMjAxNHxzbHwzMDB8MnwzfHx5ZXN8NXx1bmRlZmluZWQ=" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:315px; height: 315px"></iframe>
+          <div class="caption">
+            <h3>Instagram #wday19luglio2014</h3>
+          </div>
+        </div>  
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="text-align: center;">
+        <div class="opaque thumbnail margin-top-15" style="padding-top: 10px;">
+          <div id="galleria"></div>
+          <div class="caption">
+            <h3>Facebook #wday19luglio2014</h3>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    
+    <div class="row margin-top-60">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+        <div class="separator text-center opaque thumbnail">
+          <span class="italic">Un tocco "social"</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3" style="text-align: center;">
+        <div class="opaque thumbnail margin-top-15">
+          <div class="fb-like-box" data-href="http://www.facebook.com/wday19luglio2014" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+        </div>
+      </div>
+    </div>
 
+  </div>
 <br/>
 <br/>
   <footer class="bs-footer">
