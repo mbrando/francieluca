@@ -50,6 +50,12 @@ img.img-fixedheight {
 	font-size: 56px;
 }
 
+.opaque {
+	/*background-color: white;
+	opacity: 0.6;*/
+	background-color: rgba(255,255,255, 0.6);
+}
+
 ul.colored {
     list-style: none;
     padding:0;
@@ -69,4 +75,5 @@ ul.colored li:before {
 
 .galleria-container {
 	width: 100% !important;
+	background-color: rgba(255,255,255, 0.0);
 }
