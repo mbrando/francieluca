@@ -66,3 +66,7 @@ ul.colored li:before {
     font-size: 2em;
     color: fuchsia; /* or whatever color you prefer */
 }
+
+.galleria-container {
+	width: 100% !important;
+}
