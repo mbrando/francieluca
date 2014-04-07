@@ -1,5 +1,5 @@
 /**
- * Galleria v 1.3.3 2013-11-18
+ * Galleria v 1.3.5 2014-01-25
  * http://galleria.io
  *
  * Licensed under the MIT license
@@ -20,7 +20,7 @@ var doc    = window.document,
     protoArray = Array.prototype,
 
 // internal constants
-    VERSION = 1.33,
+    VERSION = 1.35,
     DEBUG = true,
     TIMEOUT = 30000,
     DUMMY = false,
@@ -1835,6 +1835,11 @@ Galleria = function() {
                         }
                     });
                 });
+
+                var n = self.getNext(index),
+                    p = new Galleria.Picture(),
+                    ndata = self.getData( n );
+                p.preload( self.isFullscreen() && ndata.big ? ndata.big : ndata.image );
             }
 
             // init the first rescale and attach callbacks
@@ -1975,7 +1980,7 @@ Galleria = function() {
         active: false,
 
         add: function(elem, to, from, hide) {
-            if (!elem) {
+            if ( !elem || Galleria.TOUCH ) {
                 return;
             }
             if (!idle.bound) {
@@ -2178,11 +2183,16 @@ Galleria = function() {
                 },
                 appends = {};
 
-            // IE8 fix for IE's transparent background event "feature"
-            if ( IE && IE > 7 ) {
-                cssMap.nextholder += 'background:#000;filter:alpha(opacity=0);';
-                cssMap.prevholder += 'background:#000;filter:alpha(opacity=0);';
+            // fix for navigation hovers transparent background event "feature"
+            var exs = '';
+            if ( IE > 7 ) {
+                exs = IE < 9 ? 'background:#000;filter:alpha(opacity=0);' : 'background:rgba(0,0,0,0);';
+            } else {
+                exs = 'z-index:99999';
             }
+
+            cssMap.nextholder += exs;
+            cssMap.prevholder += exs;
 
             // create and insert CSS
             $.each(cssMap, function( key, value ) {
@@ -2590,7 +2600,7 @@ Galleria.prototype = {
             showInfo: true,
             showCounter: true,
             showImagenav: true,
-            swipe: true, // 1.2.4 -> revised in 1.3
+            swipe: 'auto', // 1.2.4 -> revised in 1.3 -> changed type in 1.3.5
             thumbCrop: true,
             thumbEventType: 'click:fast',
             thumbMargin: 0,
@@ -2642,11 +2652,6 @@ Galleria.prototype = {
             DUMMY = options.dummy;
         }
 
-        // disable swipe if no touch
-        if ( !Galleria.TOUCH ) {
-           this._options.swipe = false;
-        }
-
         // hide all content
         $( this._target ).children().hide();
 
@@ -2689,6 +2694,18 @@ Galleria.prototype = {
         // merge the theme & caller options
         $.extend( true, options, Galleria.theme.defaults, this._original.options, Galleria.configure.options );
 
+        // internally we use boolean for swipe
+        options.swipe = (function(s) {
+
+            if ( s == 'enforced' ) { return true; }
+
+            // legacy patch
+            if( s === false || s == 'disabled' ) { return false; }
+            
+            return !!Galleria.TOUCH;
+
+        }( options.swipe ));
+
         // disable options that arent compatible with swipe
         if ( options.swipe ) {
             options.clicknext = false;
@@ -2697,19 +2714,16 @@ Galleria.prototype = {
 
         // check for canvas support
         (function( can ) {
-
             if ( !( 'getContext' in can ) ) {
                 can = null;
                 return;
             }
-
             _canvas = _canvas || {
                 elem: can,
                 context: can.getContext( '2d' ),
                 cache: {},
                 length: 0
             };
-
         }( doc.createElement( 'canvas' ) ) );
 
         // bind the gallery to run when data is ready
@@ -2880,13 +2894,17 @@ Galleria.prototype = {
             });
             this.finger = new Galleria.Finger(this.get('stage'), {
                 onchange: function(page) {
-                    self.setCounter( page ).setInfo( page ).pause();
-                    self.show(page);
+                    self.pause().show(page);
                 },
                 oncomplete: function(page) {
 
                     var index = M.max( 0, M.min( parseInt( page, 10 ), self.getDataLength() - 1 ) ),
                         data = self.getData(index);
+
+                    $( self._thumbnails[ index ].container )
+                        .addClass( 'active' )
+                        .siblings( '.active' )
+                        .removeClass( 'active' );
 
                     if ( !data ) {
                        return;
@@ -4694,11 +4712,15 @@ this.prependChild( 'info', 'myElement' );
                 self.updateCarousel();
             }
 
-            self._controls.frames[ self._controls.active ].scale({
-                width: self._stageWidth,
-                height: self._stageHeight,
-                iframelimit: self._options.maxVideoSize
-            });
+            var frame = self._controls.frames[ self._controls.active ];
+
+            if (frame) {
+                self._controls.frames[ self._controls.active ].scale({
+                    width: self._stageWidth,
+                    height: self._stageHeight,
+                    iframelimit: self._options.maxVideoSize
+                });
+            }
 
             self.trigger( Galleria.RESCALE );
 
@@ -4725,6 +4747,22 @@ this.prependChild( 'info', 'myElement' );
             this.addPan();
         }
         return this;
+    },
+
+    _preload: function() {
+        if ( this._options.preload ) {
+            var p, i,
+                n = this.getNext(),
+                ndata;
+            try {
+                for ( i = this._options.preload; i > 0; i-- ) {
+                    p = new Galleria.Picture();
+                    ndata = this.getData( n );
+                    p.preload( this.isFullscreen() && ndata.big ? ndata.big : ndata.image );
+                    n = this.getNext( n );
+                }
+            } catch(e) {}
+        }
     },
 
     /**
@@ -4791,11 +4829,6 @@ this.prependChild( 'info', 'myElement' );
                 type: Galleria.LOADSTART
             }));
 
-            $( self._thumbnails[ index ].container )
-                .addClass( 'active' )
-                .siblings( '.active' )
-                .removeClass( 'active' );
-
             self.$('container').removeClass( 'videoplay' );
 
             var complete = function() {
@@ -4808,10 +4841,12 @@ this.prependChild( 'info', 'myElement' );
                 self._playCheck();
             };
 
+            self._preload();
+
             window.setTimeout(function() {
 
                 // load if not ready
-                if ( !image.ready ) {
+                if ( !image.ready || $(image.image).attr('src') != src ) {
                     if ( data.iframe && !data.image ) {
                         image.isIframe = true;
                     }
@@ -5008,21 +5043,7 @@ this.prependChild( 'info', 'myElement' );
         }
 
         // preload images
-        if ( this._options.preload ) {
-
-            var p, i,
-                n = this.getNext(),
-                ndata;
-
-            try {
-                for ( i = this._options.preload; i > 0; i-- ) {
-                    p = new Galleria.Picture();
-                    ndata = self.getData( n );
-                    p.preload( this.isFullscreen() && ndata.big ? ndata.big : ndata.image );
-                    n = self.getNext( n );
-                }
-            } catch(e) {}
-        }
+        self._preload();
 
         // show the next image, just in case
         Utils.show( next.container );
@@ -6500,6 +6521,7 @@ $.extend( $.easing, {
 
 });
 
+
 // Forked version of Ainos Finger.js for native-style touch
 
 Galleria.Finger = (function() {
@@ -6750,8 +6772,11 @@ Galleria.Finger = (function() {
                     // save animation parameters
                     this.anim = { start: this.pos, time: +new Date(), distance: distance, factor: factor, destination: this.to };
                 }
-                // check if to has changed
-                if ( this.anim.destination != this.to ) {
+                // check if to has changed or time has run out
+                var elapsed = +new Date() - this.anim.time;
+                var duration = this.config.duration*this.anim.factor;
+
+                if ( elapsed > duration || this.anim.destination != this.to ) {
                     this.anim = 0;
                     this.easing = this.easeout;
                     return;
@@ -6759,12 +6784,11 @@ Galleria.Finger = (function() {
                 // apply easing
                 this.pos = this.easing(
                     null,
-                    +new Date() - this.anim.time,
+                    elapsed,
                     this.anim.start,
                     this.anim.distance,
-                    this.config.duration*this.anim.factor
+                    duration
                 );
-
             }
             this.setX();
         }

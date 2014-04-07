@@ -35,7 +35,7 @@ var PATH = Galleria.utils.getScriptPath();
 Galleria.Facebook = function( api_key ) {
 
     this.options = {
-        max: 40,                       // photos to return
+        max: 100,                      // photos to return
         imageSize: 'original',         // facebook album photo property for the main gallery image
         thumbSize: 'thumb',            // facebook album photo property for the thumbnail
         description: false,            // set this to true to get description as caption
